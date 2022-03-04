@@ -8,18 +8,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-var whitelist = ['https://wonderful-wing-d56c28.netlify.app/']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-//('/', cors(corsOptions)
-app.post("/refresh",cors(corsOptions), (req, res) => {
+app.post("/refresh",(req, res) => {
   const refreshToken = req.body.refreshToken
   const spotifyApi = new SpotifyWebApi({
     redirectUri: 'https://wonderful-wing-d56c28.netlify.app',
@@ -42,7 +31,7 @@ app.post("/refresh",cors(corsOptions), (req, res) => {
     })
 })
 
-app.post("/login",cors(corsOptions), (req, res) => {
+app.post("/login",(req, res) => {
   const code = req.body.code
   var credentials = {
     clientId: '20b403ab2d1d4197abc74cf55ff79a0d',
@@ -67,7 +56,7 @@ app.post("/login",cors(corsOptions), (req, res) => {
     })
 })
 
-app.get("/lyrics",cors(corsOptions), async (req, res) => {
+app.get("/lyrics", async (req, res) => {
   const lyrics =
     (await lyricsFinder(req.query.artist, req.query.track)) || "No Lyrics Found"
   res.json({ lyrics })
