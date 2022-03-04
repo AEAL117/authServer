@@ -73,4 +73,4 @@ app.get("/lyrics",cors(corsOptions), async (req, res) => {
   res.json({ lyrics })
 })
 
-app.listen(3001)
+app.listen(process.env.PORT || 3001)
