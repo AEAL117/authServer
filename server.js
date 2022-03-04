@@ -38,7 +38,7 @@ app.post("/login", (req, res) => {
   var credentials = {
     clientId: '20b403ab2d1d4197abc74cf55ff79a0d',
     clientSecret: '82a2eb405f5b419388f394ba13a96fe1',
-    redirectUri: 'http://localhost:3000'
+    redirectUri: 'https://wonderful-wing-d56c28.netlify.app'
   };
   var spotifyApi = new SpotifyWebApi(credentials);
 
